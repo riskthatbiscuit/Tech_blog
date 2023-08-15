@@ -13,10 +13,23 @@ router.get('/', async (req, res) => {
     const notes = noteData.map((project) => project.get({ plain: true }));
 
     // Pass serialized data into Handlebars.js template
-    res.render('homepage', { notes });
+    res.render('homepage', {
+      notes,
+      // loggedIn: req.session.loggedIn,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+// Login page
+router.get("/login", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
+  res.render("login");
+});
+
 
 module.exports = router;
