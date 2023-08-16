@@ -52,5 +52,4 @@ document
 document.addEventListener('DOMContentLoaded', function() {
   var container = document.querySelector('.collapsible');
   var instances = M.Collapsible.init(container);
-  console.log('It ran')
 });
