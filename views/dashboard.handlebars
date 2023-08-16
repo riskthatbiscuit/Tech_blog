@@ -1,0 +1,18 @@
+<!-- Loop over each note object -->
+<a>DASHBOARD??</a>
+
+{{#each notes as |note| }}
+{{!-- <div class="col s12 m6 l4"> --}}
+  <div class="col s12 m6 l4">
+    <div class='card grey lighten-5 '>
+      <div class="card-content jobscards">
+        <span class="card-title">{{note.title}}</span>
+        <p>Company: {{note.comment}}</p>
+        {{!-- <p>Posted on: {{format_date job.date_posted}}</p> --}}
+      </div>
+      <div class="card-action blue lighten-4">
+        <a href="/note/{{note.id}}" class="grey-text text-darken-4">Go to note</a>
+      </div>
+    </div>
+  </div>
+{{/each}}

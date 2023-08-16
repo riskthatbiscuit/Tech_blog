@@ -32,4 +32,14 @@ router.get("/login", (req, res) => {
 });
 
 
+router.get("/dashboard", (req, res) => {
+  if (req.session.loggedIn) {
+    res.render("dashboard", {
+    loggedIn: req.session.loggedIn,
+  })
+    return;
+  }
+  res.render("login");
+});
+
 module.exports = router;

@@ -21,6 +21,7 @@
       <ul class="right hide-on-med-and-down">
         {{#if loggedIn}}
         <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
         <li><a id="logout">Logout</a></li>
         {{else}}
         <li><a href="/">Home</a></li>
@@ -31,9 +32,6 @@
   </nav>
 
   <header class="display-flex justify-space-between align-center p-2">
-    <h1>
-      Notes
-    </h1>
   </header>
   <main class="container container-fluid mt-5">
     {{{ body }}}
