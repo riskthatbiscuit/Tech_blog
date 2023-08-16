@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
     // Pass serialized data into Handlebars.js template
     res.render('homepage', {
       notes,
-      // loggedIn: req.session.loggedIn,
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     res.status(500).json(err);

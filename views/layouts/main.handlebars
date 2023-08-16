@@ -13,8 +13,6 @@
 
 </head>
 
-
-
 <body>
   {{! Navigation bar }}
   <nav class="blue darken-3" role="navigation">
@@ -23,7 +21,6 @@
       <ul class="right hide-on-med-and-down">
         {{#if loggedIn}}
         <li><a href="/">Home</a></li>
-        <li><a href="/dashboard">Dashboard</a></li>
         <li><a id="logout">Logout</a></li>
         {{else}}
         <li><a href="/">Home</a></li>
@@ -41,6 +38,9 @@
   <main class="container container-fluid mt-5">
     {{{ body }}}
   </main>
+  {{#if loggedIn}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
   <footer>
       
   </footer>
