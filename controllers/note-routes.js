@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("sequelize");
-const { Notes, Comments} = require("../models");
+const {Notes, Comments} = require("../models");
 require("dotenv").config();
 const withAuth = require("../utils/auth");
 
@@ -13,12 +13,25 @@ router.get("/:id", withAuth, async (req, res) => {
     const note = notesData.get({ plain: true });
     console.log("here it is!")
     console.log(notesData)
+
+    const commentsData = await Comments.findAll({
+      where: {
+        noteId: noteID
+      }
+    })
+
+    // console.log(commentsData)
+    const comments = commentsData.map((comment) => comment.get({ plain: true }));
+    console.log(comments)
+
+
     res.render('note', {
-      note: note,
+      note, comments,
       loggedIn: req.session.loggedIn,
     });
     return;
   } catch (err) {
+    console.log("ERROR")
     res.status(500).json(err);
   }
 });

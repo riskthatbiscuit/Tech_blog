@@ -9,8 +9,8 @@
     <ul class="collapsible s6 login-form">
       <h5>Comments</h5>
       <ul>
-        {{#each note.Comments as |comment| }}
-        <li>{{comment.content}}</li>
+        {{#each comments}}
+          <li>{{content}}</li>
         {{/each}}
       </ul>
       <form action="/add-comment" method="POST">
