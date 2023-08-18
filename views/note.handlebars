@@ -6,13 +6,17 @@
       <p>Posted on: {{format_date note.createdAt}}</p>
       <p>By: {{note.username}}</p>
     </div>
-    <ul class="collapsible s6 login-form">
-      <h5>Comments</h5>
-      <ul>
-        {{#each comments}}
-          <li>{{content}}</li>
-        {{/each}}
-      </ul>
+    <ul class="collapsible  s6">
+      <div class="card-action blue lighten-2">Comments</div>
+        <div>
+          {{#each comments}}
+            <div class="card blue lighten-4">
+                <p>Content: {{content}}</p>
+                <p>Posted on: {{format_date createdAt}}</p>
+            </div>
+          {{/each}}
+        </div>
+      </div>
       <form action="/add-comment" method="POST">
         <textarea name="comment" rows="4" placeholder="Add a comment"></textarea>
         <button type="submit" class="btn blue lighten-4">Submit</button>
