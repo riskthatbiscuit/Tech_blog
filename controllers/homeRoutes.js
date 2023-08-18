@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Notes, User } = require('../models');
+const { Notes, User, Comments } = require('../models');
 // Import the custom middleware
 const withAuth = require('../utils/auth');
 
@@ -35,12 +35,20 @@ router.get("/login", (req, res) => {
 router.get("/dashboard", async (req, res) => {
   if (req.session.loggedIn) {
     const noteData = await Notes.findAll({
-      include: {
+      include: [{
         model: User,
         attributes: ['username'],
-      },
+      },{
+        model: Comments,
+        attributes: ['content']
+      }]
     });
-    const notes = noteData.map((note) => note.get({ plain: true }));
+    const notes = noteData.map((note) => {
+      const plainNote = note.get({ plain: true });
+      plainNote.commentCount = plainNote.comments ? plainNote.comments.length : 0;
+      return plainNote;
+    });
+
     console.log(notes)
     res.render("dashboard", {
     notes,
