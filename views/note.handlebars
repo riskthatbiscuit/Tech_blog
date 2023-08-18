@@ -4,15 +4,15 @@
       <span class="card-title">{{note.title}}</span>
       <p>Note: {{note.note}}</p>
       <p>Posted on: {{format_date note.createdAt}}</p>
-      <p>By: {{note.username}}</p>
+      <p>By: {{note.user.username}}</p>
     </div>
     <ul class="collapsible  s6">
       <div class="card-action blue lighten-2">Comments</div>
         <div>
-          {{#each comments}}
+          {{#each note.comments}}
             <div class="card blue lighten-4">
                 <p>Content: {{content}}</p>
-                <p>Posted on: {{format_date createdAt}}</p>
+                <p>Posted by {{user.username}} on: {{format_date createdAt}}</p>
             </div>
           {{/each}}
         </div>

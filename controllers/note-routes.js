@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const {Notes, Comments} = require("../models");
+const {Notes, Comments, User} = require("../models");
 const withAuth = require("../utils/auth");
 
 
@@ -8,18 +8,24 @@ router.get("/:id", withAuth, async (req, res) => {
   try {
     const noteID = req.params.id;
     
-    const notesData = await Notes.findByPk(noteID);
+    const notesData = await Notes.findByPk(noteID, {
+      include: [{
+        model: Comments,
+        attributes: ['content', 'createdAt','userId'],
+        include: {
+          model: User, 
+          attributes:['username'],
+        }
+      }, {
+        model: User, 
+        attributes: ['username']
+      }]
+    });
+    
     const note = notesData.get({ plain: true });
-
-    const commentsData = await Comments.findAll({
-      where: {
-        noteId: noteID
-      }
-    })
-    const comments = commentsData.map((comment) => comment.get({ plain: true }));
-    console.log(comments)
+    console.log(note)
     res.render('note', {
-      note, comments,
+      note,
       loggedIn: req.session.loggedIn,
     });
     return;

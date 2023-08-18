@@ -24,13 +24,13 @@ Notes.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user: {
+    userId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       references: {
         model: "user",
         key: "id",
       },
+      onDelete: "CASCADE",
     },
     createdAt: {
       type: DataTypes.DATE,

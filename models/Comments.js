@@ -28,6 +28,14 @@ Comments.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
+    userId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "user",
+        key: "id",
+      },
+      onDelete: "CASCADE",
+    },
   },
   {
     sequelize,
