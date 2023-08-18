@@ -3,7 +3,7 @@ const addCommentFormHandler = async (e) => {
 
   console.log("Save comment was pressed!");
 
-  const comment = document.querySelector("#note_comment").value;
+  const comment = document.querySelector("#comment").value;
 
   const noteId = window.location.pathname.split("/").pop();
   const response = await fetch(`/note/${noteId}`, {
@@ -22,11 +22,5 @@ const addCommentFormHandler = async (e) => {
 };
 
 document
-  .querySelector("submit")
+  .querySelector("#submitComment")
   .addEventListener("click", addCommentFormHandler);
-
-document.addEventListener("DOMContentLoaded", function () {
-  let collapsibleElements = document.querySelectorAll(".collapsible");
-  M.Collapsible.init(collapsibleElements, {});
-
-});

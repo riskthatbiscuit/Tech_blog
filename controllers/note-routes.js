@@ -23,7 +23,6 @@ router.get("/:id", withAuth, async (req, res) => {
     });
     
     const note = notesData.get({ plain: true });
-    // console.log(note)
     res.render('note', {
       note,
       loggedIn: req.session.loggedIn,
@@ -45,6 +44,7 @@ router.post("/:id", withAuth, async (req, res) => {
     });
 
     console.log(dbCommentData)
+
     res.redirect(`/note/${req.params.id}`);
     return;
 
