@@ -11,7 +11,7 @@ router.get("/:id", withAuth, async (req, res) => {
     const notesData = await Notes.findByPk(noteID, {
       include: [{
         model: Comments,
-        attributes: ['content', 'createdAt','userId'],
+        attributes: ['content', 'createdAt','userId','id'],
         include: {
           model: User, 
           attributes:['username'],
@@ -44,6 +44,7 @@ router.post("/:id", withAuth, async (req, res) => {
       userId: req.session.user_id,
     });
 
+    console.log(dbCommentData)
     res.redirect(`/note/${req.params.id}`);
     return;
 
@@ -51,5 +52,30 @@ router.post("/:id", withAuth, async (req, res) => {
     res.status(500).json(err)
   }
 });
+
+// DELETE comment
+router.delete("/comment/:id", withAuth, async (req,res) => {
+  try {
+    const commentId = req.params.id;
+
+    const commentToDelete = await Comments.findByPk(commentId);
+
+    if (!commentToDelete) {
+      res.status(404).json({ message: "Comment not found" });
+      return;
+    }
+
+    if (commentToDelete.userId !== req.session.user_id) {
+      res.status(403).json({ message: "Unauthorized to delete this comment" });
+      return;
+    }
+
+    await commentToDelete.destroy();
+
+    res.status(200).json(commentsData);
+  } catch (err) {
+    res.status(500),json(err)
+  }
+})
 
 module.exports = router;
