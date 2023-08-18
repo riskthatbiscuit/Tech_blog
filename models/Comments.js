@@ -23,6 +23,11 @@ Comments.init(
       },
       onDelete: "CASCADE",
     },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     sequelize,

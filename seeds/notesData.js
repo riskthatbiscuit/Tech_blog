@@ -2,29 +2,29 @@ const { Notes } = require("../models");
 
 const noteData = [
   {
-    title: "Sal",
-    note: "sal@hotmail.com",
-    username: "user1",
+    title: "JavaScript Secrets",
+    note: "Unlock the hidden power of JavaScript with these advanced techniques and tips.",
+    user: 1,
   },
   {
-    title: "Lernantino",
-    note: "lernantino@gmail.com",
-    username: "user2",
+    title: "Bootstrap Hacks",
+    note: "Discover clever tricks and shortcuts to enhance your Bootstrap development workflow.",
+    user: 1,
   },
   {
-    title: "Amiko",
-    note: "amiko2k20@aol.com",
-    username: "user3",
+    title: "Frontend Frameworks Comparison",
+    note: "Explore the pros and cons of popular frontend frameworks like React, Angular, and Vue.",
+    user: 2,
   },
   {
-    title: "Jordan",
-    note: "jordan99@msn.com",
-    username: "user4",
+    title: "Web Accessibility Essentials",
+    note: "Learn how to create inclusive and accessible web experiences for all users.",
+    user: 2,
   },
   {
-    title: "Blake",
-    note: "the_blake@yahoo.com",
-    username: "user5",
+    title: "Optimizing Website Performance",
+    note: "Boost your website's speed and performance with optimization techniques and best practices.",
+    user: 3,
   },
 ];
 
