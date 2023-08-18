@@ -20,7 +20,7 @@ Notes.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    comment: {
+    note: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -45,7 +45,7 @@ Notes.init(
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: "data",
+    modelName: "note",
   }
 );
 

@@ -1,40 +1,34 @@
 const { Notes } = require("../models");
 
-const notedata = [
+const noteData = [
   {
-    title: "Introduction to JavaScript",
-    comment: "Learn the fundamentals of JavaScript programming.",
-    username: "techlover",
-    createdAt: new Date("2023-08-15T10:00:00Z"),
+    title: "Sal",
+    note: "sal@hotmail.com",
+    username: "user1",
   },
   {
-    title: "Getting Started with Node.js",
-    comment: "Discover how to use Node.js for server-side development.",
-    username: "devmaster",
-    createdAt: new Date("2023-08-14T12:00:00Z"),
+    title: "Lernantino",
+    note: "lernantino@gmail.com",
+    username: "user2",
   },
   {
-    title: "Frontend Frameworks Comparison",
-    comment:
-      "Compare popular frontend frameworks like React, Angular, and Vue.",
-    username: "frontendguru",
-    createdAt: new Date("2023-08-13T15:00:00Z"),
+    title: "Amiko",
+    note: "amiko2k20@aol.com",
+    username: "user3",
   },
   {
-    title: "Building RESTful APIs with Express",
-    comment: "Learn how to build RESTful APIs using the Express framework.",
-    username: "apideveloper",
-    createdAt: new Date("2023-08-12T18:00:00Z"),
+    title: "Jordan",
+    note: "jordan99@msn.com",
+    username: "user4",
   },
   {
-    title: "Database Design for Web Applications",
-    comment:
-      "Explore best practices for designing databases in web applications.",
-    username: "dbwizard",
-    createdAt: new Date("2023-08-11T20:00:00Z"),
+    title: "Blake",
+    note: "the_blake@yahoo.com",
+    username: "user5",
   },
 ];
 
-const seedNotes = () => Notes.bulkCreate(notedata);
+
+const seedNotes = () => Notes.bulkCreate(noteData);
 
 module.exports = seedNotes;

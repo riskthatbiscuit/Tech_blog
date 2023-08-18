@@ -1,0 +1,22 @@
+<div class="col s12 m6 l4">
+  <div class="card grey lighten-5">
+    <div class="card-content jobscards">
+      <span class="card-title">{{note.title}}</span>
+      <p>Note: {{note.note}}</p>
+      <p>Posted on: {{format_date note.createdAt}}</p>
+      <p>By: {{note.username}}</p>
+    </div>
+    <ul class="collapsible s6 login-form">
+      <h5>Comments</h5>
+      <ul>
+        {{#each note.Comments as |comment| }}
+        <li>{{comment.content}}</li>
+        {{/each}}
+      </ul>
+      <form action="/add-comment" method="POST">
+        <textarea name="comment" rows="4" placeholder="Add a comment"></textarea>
+        <button type="submit" class="btn blue lighten-4">Submit</button>
+      </form>
+    </ul>
+  </div>
+</div>

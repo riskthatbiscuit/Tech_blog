@@ -32,9 +32,13 @@ router.get("/login", (req, res) => {
 });
 
 
-router.get("/dashboard", (req, res) => {
+router.get("/dashboard", async (req, res) => {
   if (req.session.loggedIn) {
+    const noteData = await Notes.findAll({});
+    const notes = noteData.map((project) => project.get({ plain: true }));
+
     res.render("dashboard", {
+    notes,
     loggedIn: req.session.loggedIn,
   })
     return;
