@@ -23,7 +23,7 @@ router.get("/:id", withAuth, async (req, res) => {
     });
     
     const note = notesData.get({ plain: true });
-    console.log(note)
+    // console.log(note)
     res.render('note', {
       note,
       loggedIn: req.session.loggedIn,
@@ -53,28 +53,30 @@ router.post("/:id", withAuth, async (req, res) => {
   }
 });
 
-// DELETE comment
-router.delete("/comment/:id", withAuth, async (req,res) => {
+// DELETE note
+router.delete("/:id", withAuth, async (req,res) => {
   try {
-    const commentId = req.params.id;
+    const noteID = req.params.id;
+    const noteToDelete = await Notes.findByPk(noteID);
 
-    const commentToDelete = await Comments.findByPk(commentId);
-
-    if (!commentToDelete) {
-      res.status(404).json({ message: "Comment not found" });
+    if (!noteToDelete) {
+      res.status(404).json({ message: "note not found" });
       return;
     }
 
-    if (commentToDelete.userId !== req.session.user_id) {
-      res.status(403).json({ message: "Unauthorized to delete this comment" });
-      return;
-    }
+    // User controls?
+    // if (noteToDelete.dataValues.userId !== req.session.user_id) {
+    //   console.log('No right to remove')
+    //   res.status(403).json({ message: "Unauthorized to delete this note" });
+    //   return;
+    // }
 
-    await commentToDelete.destroy();
+    await noteToDelete.destroy();
+    res.json({ redirect: "/dashboard" });    
+    return;
 
-    res.status(200).json(commentsData);
   } catch (err) {
-    res.status(500),json(err)
+    res.status(500).json(err)
   }
 })
 

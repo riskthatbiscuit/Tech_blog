@@ -1,26 +1,29 @@
-const deleteCommentFormHandler = async (e) => {
+const deleteNoteFormHandler = async (e) => {
   e.preventDefault();
 
-  console.log("Delete comment was pressed!");
-
-  const commentId = window.location.pathname.split("/").pop();
-  const response = await fetch(`/comment/${commentId}`, {
+  const noteId = window.location.pathname.split("/").pop();
+  const response = await fetch(`/note/${noteId}`, {
     method: "DELETE",
   });
 
   if (response.ok) {
-    document.location.reload();
+    const responseData = await response.json(); 
+
+    if (responseData.redirect) {
+      window.location.href = responseData.redirect;
+    } else {
+      document.location.reload();
+    }
   } else {
-    alert("Failed to delete a comment.");
+    alert("Failed to delete a note. Check that you were the user to create");
   }
 };
 
 document
-  .querySelector("#deleteComment")
-  .addEventListener("click", addCommentFormHandler);
+  .querySelector("#deleteNote")
+  .addEventListener("click", deleteNoteFormHandler);
 
 document.addEventListener("DOMContentLoaded", function () {
   let collapsibleElements = document.querySelectorAll(".collapsible");
   M.Collapsible.init(collapsibleElements, {});
-
 });

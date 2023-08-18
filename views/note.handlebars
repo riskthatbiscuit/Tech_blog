@@ -5,6 +5,9 @@
       <p>Note: {{note.note}}</p>
       <p>Posted on: {{format_date note.createdAt}}</p>
       <p>By: {{note.user.username}}</p>
+      <form>
+      <button id = "deleteNote" type="button" class="btn blue lighten-4">Delete</button>
+      </form>
     </div>
     <ul class="collapsible  s6">
       <div class="card-action blue lighten-2">Comments</div>
@@ -14,10 +17,6 @@
                 <p>Content: {{content}}</p>
                 <p>Posted by {{user.username}} on: {{format_date createdAt}}</p>
                 <p>Comment Id: {{id}}</p>
-                <form action="/comment/{{id}}" method="DELETE">
-                  <textarea name="comment" rows="4" placeholder="Delete a comment"></textarea>
-                  <button type="deleteComment" class="btn blue lighten-4">Delete</button>
-                </form>
             </div>
           {{/each}}
         </div>
