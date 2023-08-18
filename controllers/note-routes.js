@@ -34,4 +34,22 @@ router.get("/:id", withAuth, async (req, res) => {
   }
 });
 
+//POST comment
+router.post("/:id", withAuth, async (req, res) => {
+  try {
+
+    const dbCommentData = await Comments.create({
+      content: req.body.comment,
+      noteId: req.params.id, 
+      userId: req.session.user_id,
+    });
+
+    res.redirect(`/note/${req.params.id}`);
+    return;
+
+  } catch (err) {
+    res.status(500).json(err)
+  }
+});
+
 module.exports = router;

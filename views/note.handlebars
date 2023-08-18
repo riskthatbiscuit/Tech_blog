@@ -17,7 +17,7 @@
           {{/each}}
         </div>
       </div>
-      <form action="/add-comment" method="POST">
+      <form action="/note/{{note.id}}" method="POST">
         <textarea name="comment" rows="4" placeholder="Add a comment"></textarea>
         <button type="submit" class="btn blue lighten-4">Submit</button>
       </form>
