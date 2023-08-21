@@ -33,23 +33,25 @@ router.get("/:id", withAuth, async (req, res) => {
   }
 });
 
-//POST comment
-router.post("/:id", withAuth, async (req, res) => {
+// CREATE note
+router.post("/addnote", async (req, res) => {
+  // console.log("are we here yet?")
+  // console.log(req.body)
+  // console.log(req.session.user_id);
+  const newSeed = {
+    title: req.body.title,
+    note: req.body.note,
+    userId: req.session.user_id,
+    };
+  console.log(newSeed)
   try {
-
-    const dbCommentData = await Comments.create({
-      content: req.body.comment,
-      noteId: req.params.id, 
-      userId: req.session.user_id,
-    });
-
-    console.log(dbCommentData)
-
-    res.redirect(`/note/${req.params.id}`);
+    const dbNoteData = await Notes.create(newSeed)
+    console.log(dbNoteData);
+    res.status(200).json(dbNoteData);
+    // res.json({ redirect: "/dashboard" }); 
     return;
-
   } catch (err) {
-    res.status(500).json(err)
+    res.status(500).json(err);
   }
 });
 
@@ -58,26 +60,46 @@ router.delete("/:id", withAuth, async (req,res) => {
   try {
     const noteID = req.params.id;
     const noteToDelete = await Notes.findByPk(noteID);
-
+    
     if (!noteToDelete) {
       res.status(404).json({ message: "note not found" });
       return;
     }
-
+    
     // User controls?
     // if (noteToDelete.dataValues.userId !== req.session.user_id) {
-    //   console.log('No right to remove')
-    //   res.status(403).json({ message: "Unauthorized to delete this note" });
-    //   return;
-    // }
-
-    await noteToDelete.destroy();
-    res.json({ redirect: "/dashboard" });    
-    return;
-
-  } catch (err) {
-    res.status(500).json(err)
-  }
-})
+      //   console.log('No right to remove')
+      //   res.status(403).json({ message: "Unauthorized to delete this note" });
+      //   return;
+      // }
+      
+      await noteToDelete.destroy();
+      res.json({ redirect: "/dashboard" });    
+      return;
+      
+    } catch (err) {
+      res.status(500).json(err)
+    }
+  })
+  
+  //POST comment
+  router.post("/:id", withAuth, async (req, res) => {
+    try {
+  
+      const dbCommentData = await Comments.create({
+        content: req.body.comment,
+        noteId: req.params.id, 
+        userId: req.session.user_id,
+      });
+  
+      console.log(dbCommentData)
+  
+      res.redirect(`/note/${req.params.id}`);
+      return;
+  
+    } catch (err) {
+      res.status(500).json(err)
+    }
+  });
 
 module.exports = router;

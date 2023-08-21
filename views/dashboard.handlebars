@@ -1,4 +1,10 @@
 <!-- Loop over each note object -->
+  <form action="/note}" method="POST">
+    <textarea id="newTitle" rows="4" placeholder="Add a post title"></textarea>
+    <textarea id="newNote" rows="4" placeholder="Add post"></textarea>
+    <button id="submitNote" type="submit" class="btn blue lighten-4">Submit</button>
+  </form>
+
 {{#each notes as |note| }}
 {{!-- <div class="col s12 m6 l4"> --}}
   <div class="col s12 m6 l4">
@@ -17,3 +23,5 @@
     </div>
   </div>
 {{/each}}
+
+<script src="/js/addnote.js"></script>
