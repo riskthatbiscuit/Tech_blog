@@ -7,7 +7,7 @@ const addNoteFormHandler = async (e) => {
 
   if (title && note){
     console.log("we made it this far!")
-    const response = await fetch(`/note/addnote`, {
+    const response = await fetch(`/note`, {
       method: "POST",
       body: JSON.stringify({ title, note }),
       headers: { "Content-Type": "application/json" },

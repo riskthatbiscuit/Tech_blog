@@ -39,14 +39,7 @@ Notes.init(
     },
   },
   {
-    // hooks: {
-    //   beforeCreate: async (newDataData) => {
-    //     newDataData.password = await bcrypt.hash(newDataData.password, 10);
-    //     return newDataData;
-    //   },
-    // },
     sequelize,
-    timestamps: true,
     freezeTableName: true,
     underscored: true,
     modelName: "note",

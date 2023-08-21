@@ -34,21 +34,17 @@ router.get("/:id", withAuth, async (req, res) => {
 });
 
 // CREATE note
-router.post("/addnote", async (req, res) => {
-  // console.log("are we here yet?")
-  // console.log(req.body)
-  // console.log(req.session.user_id);
+router.post("/", withAuth, async (req, res) => {
+
   const newSeed = {
     title: req.body.title,
     note: req.body.note,
     userId: req.session.user_id,
     };
-  console.log(newSeed)
+  
   try {
     const dbNoteData = await Notes.create(newSeed)
-    console.log(dbNoteData);
     res.status(200).json(dbNoteData);
-    // res.json({ redirect: "/dashboard" }); 
     return;
   } catch (err) {
     res.status(500).json(err);

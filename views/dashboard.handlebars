@@ -1,9 +1,16 @@
 <!-- Loop over each note object -->
-  <form action="/note}" method="POST">
-    <textarea id="newTitle" rows="4" placeholder="Add a post title"></textarea>
-    <textarea id="newNote" rows="4" placeholder="Add post"></textarea>
-    <button id="submitNote" type="submit" class="btn blue lighten-4">Submit</button>
-  </form>
+  <div class="col s12 m6 l4">
+    <div class='card grey lighten-5'>
+      <span class="card-title">Add new Post</span>
+      <div class="card-content jobscards">
+        <form>
+          <textarea id="newTitle" placeholder="Add a post title"></textarea>
+          <textarea id="newNote" placeholder="Add post"></textarea>
+          <button id="submitNote" type="submit" class="btn blue lighten-4">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
 
 {{#each notes as |note| }}
 {{!-- <div class="col s12 m6 l4"> --}}
@@ -11,14 +18,14 @@
     <div class='card grey lighten-5 '>
       <div class="card-content jobscards">
         <span class="card-title">{{note.title}}</span>
-        <p>Note: {{note.note}}</p>
+        <p>Post: {{note.note}}</p>
         <p>Posted on: {{format_date note.createdAt}}</p>
         <p>By: {{note.user.username}}</p>
         <p>Number of Comments: {{commentCount}}</p>
         {{!-- <p>Posted on: {{format_date job.date_posted}}</p> --}}
       </div>
       <div class="card-action blue lighten-4">
-        <a href="/note/{{note.id}}" class="grey-text text-darken-4">Go to note</a>
+        <a href="/note/{{note.id}}" class="grey-text text-darken-4">Go to post</a>
       </div>
     </div>
   </div>
