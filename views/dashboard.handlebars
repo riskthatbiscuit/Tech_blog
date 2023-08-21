@@ -6,11 +6,13 @@
         <form>
           <textarea id="newTitle" placeholder="Add a post title"></textarea>
           <textarea id="newNote" placeholder="Add post"></textarea>
-          <button id="submitNote" type="submit" class="btn blue lighten-4">Submit</button>
+          <button id="submitNote" type="submit" class="btn blue lighten-4">Post</button>
         </form>
       </div>
     </div>
   </div>
+
+<p>Previous posts</p>
 
 {{#each notes as |note| }}
 {{!-- <div class="col s12 m6 l4"> --}}
@@ -27,8 +29,12 @@
       <div class="card-action blue lighten-4">
         <a href="/note/{{note.id}}" class="grey-text text-darken-4">Go to post</a>
       </div>
+      <form>
+        <button id="deleteNote{{note.id}}" type="button" class="btn blue lighten-4 deleteNote">Delete</button>
+      </form>
     </div>
   </div>
 {{/each}}
 
 <script src="/js/addnote.js"></script>
+<script src="/js/deletenote.js"></script>

@@ -1,7 +1,7 @@
 const deleteNoteFormHandler = async (e) => {
   e.preventDefault();
 
-  const noteId = window.location.pathname.split("/").pop();
+  const noteId = e.target.id.replace("deleteNote", "");
   const response = await fetch(`/note/${noteId}`, {
     method: "DELETE",
   });
@@ -20,8 +20,9 @@ const deleteNoteFormHandler = async (e) => {
 };
 
 document
-  .querySelector("#deleteNote")
-  .addEventListener("click", deleteNoteFormHandler);
+  .querySelectorAll(".deleteNote").forEach(button => {
+  button.addEventListener("click", deleteNoteFormHandler);
+  });
 
 document.addEventListener("DOMContentLoaded", function () {
   let collapsibleElements = document.querySelectorAll(".collapsible");
