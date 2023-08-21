@@ -28,11 +28,13 @@ router.get("/login", (req, res) => {
 });
 
 
+// Dashboard Page
 router.get("/dashboard", async (req, res) => {
   if (req.session.loggedIn) {
     const noteData = await Notes.findAll({
       include: [{
         model: User,
+        where: {id: req.session.user_id},
         attributes: ['username'],
       },{
         model: Comments,
