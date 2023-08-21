@@ -78,6 +78,27 @@ router.delete("/:id", withAuth, async (req,res) => {
     }
   })
   
+// Update note
+router.put("/:id", withAuth, async (req, res) => {
+  try {
+  const dbPostData = await Notes.update({
+    title: req.body.title,
+    note: req.body.note,
+  },
+  {
+    where: {
+      id: req.params.id
+    }
+  })
+
+  res.json({ redirect: "/dashboard" });   
+  return;
+  } catch (err) {
+    res.status(500).json(err)
+  }
+})
+
+
   //POST comment
   router.post("/:id", withAuth, async (req, res) => {
     try {
