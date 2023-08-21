@@ -5,10 +5,6 @@ const amendNoteFormHandler = async (e) => {
   const updatedTitle = document.querySelector(`#editTitle${noteId}`).value.trim();
   const updatedNote = document.querySelector(`#editNote${noteId}`).value.trim();
 
-    console.log(noteId)
-    console.log(updatedTitle)
-    console.log(updatedNote)
-
   if (updatedTitle && updatedNote) {
     const response = await fetch(`/note/${noteId}`, {
       method: "PUT",
@@ -25,10 +21,12 @@ const amendNoteFormHandler = async (e) => {
 };
 
 const editNoteFormHandler = (e) => {
-  const noteId = e.target.id.replace("editNote", "");
-  console.log("PRESSED")
+  const noteId = e.target.id.replace("editButton", "");
   const editForm = document.querySelector(`#editForm${noteId}`);
   editForm.style.display = "block";
+
+  const originalButton = document.querySelector(`#editButton${noteId}`);
+  originalButton.style.display = "none";
 };
 
 document.querySelectorAll(".editNote").forEach(button => {
