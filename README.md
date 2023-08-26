@@ -4,6 +4,8 @@ Welcome to the Tech Blog! This is a web application that allows users to share t
 
 ## Link to deployed application
 
+Link to deployed application: https://protected-mesa-64440-be1b5b7fac6f.herokuapp.com/
+
 ## Usage
 
 Welcome to the Tech Blog! This web application allows users to create, view, update, and delete their own blog posts. Users can also leave comments on each post to engage in discussions.
