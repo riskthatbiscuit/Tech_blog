@@ -24,26 +24,31 @@
         <p>Posted on: {{format_date note.createdAt}}</p>
         <p>By: {{note.user.username}}</p>
         <p>Number of Comments: {{commentCount}}</p>
-        {{!-- <p>Posted on: {{format_date job.date_posted}}</p> --}}
+
+        <div id="editForm{{note.id}}" class="edit-form" style="display: none;">
+          <input id="editTitle{{note.id}}" type="text" placeholder="Edit title" value="{{note.title}}">
+          <textarea id="editNote{{note.id}}" placeholder="Edit post">{{note.note}}</textarea>
+          <button id="updateNote{{note.id}}" type="button" class="btn blue lighten-4 updateNote">Update</button>
+        </div>
+
+          <div class="row card-action blue lighten-4">
+            <a href="/note/{{note.id}}" type="button" class="grey-text text-darken-4">See full post &amp comments</a>
+          </div >
+
+        <div class="row card-action blue lighten-4">
+          <div class="col">
+            <form>
+              <button id="deleteNote{{note.id}}" type="button" class="btn blue lighten-2 deleteNote">Delete Post</button>
+            </form>
+          </div >
+
+          <div class="col">
+            <form>
+              <button id="editButton{{note.id}}" type="button" class="btn blue lighten-2 editNote">Amend Post</button>
+            </form>
+          </div>
+        </div>
       </div>
-
-      <div id="editForm{{note.id}}" class="edit-form" style="display: none;">
-        <input id="editTitle{{note.id}}" type="text" placeholder="Edit title" value="{{note.title}}">
-        <textarea id="editNote{{note.id}}" placeholder="Edit post">{{note.note}}</textarea>
-        <button id="updateNote{{note.id}}" type="button" class="btn blue lighten-4 updateNote">Update</button>
-      </div>
-
-      <div class="card-action blue lighten-4">
-        <a href="/note/{{note.id}}" class="grey-text text-darken-4">See full post &amp comments</a>
-      </div>
-
-      <form>
-        <button id="deleteNote{{note.id}}" type="button" class="btn blue lighten-4 deleteNote">Delete Post</button>
-      </form>
-
-      <form>
-        <button id="editButton{{note.id}}" type="button" class="btn blue lighten-4 editNote">Amend Post</button>
-      </form>
 
     </div>
   </div>
